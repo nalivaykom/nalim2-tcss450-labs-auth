@@ -19,6 +19,8 @@ app.use(express.json())
  */
 app.use(middleware.jsonErrorInBody)
 
+app.use('/auth', require('./routes/signin.js'))
+
 app.use('/auth', require('./routes/register.js'))
 
 

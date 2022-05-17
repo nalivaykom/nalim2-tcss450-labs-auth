@@ -71,14 +71,13 @@ router.get('/verify/:userEmail', (request, response) => {
         // })
         pool.query(theQuery)
             .then(result => {
-                
-                //request.memberid = result.rows[0].memberid
-                response.status(200).send({
-                    message: theQuery + "  /  " + result.rowCount
-                    
+                if (result.rowCount = 1) {
+                    next()
+                }
+                request.memberid = result.rows[0].memberid
+                response.status(400).send({
+                    message: "User is not registered and does not need to be verified " + request.memberid
                 })
-                
-                next()
             })
             .catch((error) => {
                 response.status(400).send({

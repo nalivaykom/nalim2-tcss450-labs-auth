@@ -72,7 +72,7 @@ router.get('/verify/:userEmail', (request, response) => {
         pool.query(theQuery)
             .then(result => {
                 response.status(200).send({
-                    message: "got into the .then"
+                    message: result
                 })
                 request.memberid = result.rows[0].memberid
                 next()

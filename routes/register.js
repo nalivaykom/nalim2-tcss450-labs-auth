@@ -65,7 +65,7 @@ router.get('/verify/:userEmail', (request, response) => {
 
     
     if(isStringProvided(userEmail)) {
-        let theQuery = "SELECT email FROM members WHERE email = " + userEmail
+        let theQuery = "SELECT email FROM members WHERE email = '" + userEmail + "'"
         response.status(200).send({
             message: theQuery
         })

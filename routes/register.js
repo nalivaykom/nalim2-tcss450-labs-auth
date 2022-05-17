@@ -60,9 +60,12 @@ let transporter = nodemailer.createTransport({
 
 router.get('/verify/:userEmail', (request, response, next) => {
     let userEmail = request.params.userEmail
-    response.status(201).send({ 
-        message:(1 == 1)
-    })
+    
+    if (isStringProvided(userEmail)) {
+        response.status(201).send({ 
+            message:(1 == 1)
+        })
+    }
 })
 
 // router.get('/verify/:userEmail', (request, response, next) => {

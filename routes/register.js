@@ -81,7 +81,7 @@ router.get('/verify/:userEmail', (request, response) => {
             })
             .catch((err) => {
                 response.status(400).send({
-                    message: "verification failed " 
+                    message: "verification failed " + error.constraint
                 })
             })
     } else {

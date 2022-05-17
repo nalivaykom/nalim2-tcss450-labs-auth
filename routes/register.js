@@ -56,66 +56,71 @@ let transporter = nodemailer.createTransport({
  * @apiError (400: Other Error) {String} message "other error, see detail"
  * @apiError (400: Other Error) {String} detail Information about th error
  * 
- */ 
-router.get('/verify/:userEmail', (request, response, next) => {
-    let userEmail = request.params.userEmail
-    // response.status(200).send({
-    //     message: userEmail
-    // })
+ */
+
+router.get('/verify', (request, response, next) => {
+    response.status(200).send({ message:(1 == 1)})
+})
+
+// router.get('/verify/:userEmail', (request, response, next) => {
+//     let userEmail = request.params.userEmail
+//     // response.status(200).send({
+//     //     message: userEmail
+//     // })
 
     
-    if(isStringProvided(userEmail)) {
-        let theQuery = "SELECT email FROM members WHERE email = '" + userEmail + "'"
-        // response.status(200).send({
-        //     message: theQuery
-        // })
-        pool.query(theQuery)
-            .then(result => {
-                //let num = result.rowCount
+//     if(isStringProvided(userEmail)) {
+//         let theQuery = "SELECT email FROM members WHERE email = '" + userEmail + "'"
+//         // response.status(200).send({
+//         //     message: theQuery
+//         // })
+//         pool.query(theQuery)
+//             .then(result => {
+//                 //let num = result.rowCount
 
-                response.status(400).send({
-                    message: (1 == "1")
-                })
+//                 response.status(400).send({
+//                     message: (1 == "1")
+//                 })
 
-                // if (num == 1) {
-                    // response.status(400).send({
-                    //     message: "inside if " + num
-                    // })
-                    //next()
-                // }
-                // if (num = 1) {
-                //     response.status(200).send({
-                //         message: "checking if if statment breaks code"
-                //     })
-                // }
-                // if (result.rowCount == 1) {
+//                 // if (num == 1) {
+//                     // response.status(400).send({
+//                     //     message: "inside if " + num
+//                     // })
+//                     //next()
+//                 // }
+//                 // if (num = 1) {
+//                 //     response.status(200).send({
+//                 //         message: "checking if if statment breaks code"
+//                 //     })
+//                 // }
+//                 // if (result.rowCount == 1) {
                     
-                //     response.status(200).send({
-                //         message: "row count was 1"
-                //     })
-                //     next()
-                // }
-                //request.memberid = result.rows[0].memberid
-                response.status(400).send({
-                    message: "User is not registered and does not need to be verified "// + num
-                })
-            })
-            // .catch((error) => {
-            //     response.status(400).send({
-            //         message: "verification failed "
-            //     })
-            // })
-    } else {
-        response.status(400).send({
-            message: "userEmail is not string?"
-        })
-    }
-}, (request, response) => {
-    //theQuery = "UPDATE members SET verification = '1' WHERE"
-    response.status(200).send({
-        message: "memberid was found, yay "
-    })
-})
+//                 //     response.status(200).send({
+//                 //         message: "row count was 1"
+//                 //     })
+//                 //     next()
+//                 // }
+//                 //request.memberid = result.rows[0].memberid
+//                 response.status(400).send({
+//                     message: "User is not registered and does not need to be verified "// + num
+//                 })
+//             })
+//             // .catch((error) => {
+//             //     response.status(400).send({
+//             //         message: "verification failed "
+//             //     })
+//             // })
+//     } else {
+//         response.status(400).send({
+//             message: "userEmail is not string?"
+//         })
+//     }
+// }, (request, response) => {
+//     //theQuery = "UPDATE members SET verification = '1' WHERE"
+//     response.status(200).send({
+//         message: "memberid was found, yay "
+//     })
+// })
 
 router.post('/', (request, response, next) => {
 

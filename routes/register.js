@@ -85,8 +85,10 @@ router.get('/verify/:userEmail?', (request, response, next) => {
         })
     }
 }, (request, response) => {
+    let userEmail = request.params.userEmail
+    let theQuery = "UPDATE members SET verification = '1' WHERE email = '" + userEmail + "'" 
     response.status(200).send({
-        message:"user has been confirmed within the database"
+        message:"user has been confirmed within the database\n" + theQuery
     })
 })
 

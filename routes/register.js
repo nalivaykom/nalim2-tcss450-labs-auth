@@ -71,12 +71,15 @@ router.get('/verify/:userEmail', (request, response) => {
         // })
         pool.query(theQuery)
             .then(result => {
+                response.status(200).send({
+                    message: "got into the .then"
+                })
                 request.memberid = result.rows[0].memberid
                 next()
             })
-            .catch((error) => {
+            .catch((err) => {
                 response.status(400).send({
-                    message: "verification failed"
+                    message: "verification failed " 
                 })
             })
     } else {

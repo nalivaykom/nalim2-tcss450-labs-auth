@@ -77,7 +77,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                 //         message: "checking if if statment breaks code"
                 //     })
                 // }
-                if (result.rowCount == 1) {
+                if (result.rowCount === 1) {
                     //next()
                     response.status(200).send({
                         message: "row count was 1"

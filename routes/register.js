@@ -71,18 +71,18 @@ router.get('/verify/:userEmail', (request, response, next) => {
         // })
         pool.query(theQuery)
             .then(result => {
-                let num = result.rowCount
+                //let num = result.rowCount
 
                 response.status(400).send({
                     message: (1 == 1)
                 })
 
-                if (num == 1) {
+                // if (num == 1) {
                     // response.status(400).send({
                     //     message: "inside if " + num
                     // })
                     //next()
-                }
+                // }
                 // if (num = 1) {
                 //     response.status(200).send({
                 //         message: "checking if if statment breaks code"

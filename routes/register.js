@@ -82,7 +82,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                     message: "User is not registered and does not need to be verified " //+ request.memberid
                 })
             })
-            .catch((error) => {
+            .catch((err) => {
                 response.status(400).send({
                     message: "verification failed " + error
                 })

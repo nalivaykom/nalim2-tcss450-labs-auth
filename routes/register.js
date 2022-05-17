@@ -74,7 +74,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                 let num = result.rowCount
 
                 response.status(400).send({
-                    message: (num == 1)
+                    message: (1 == 1)
                 })
 
                 if (num == 1) {

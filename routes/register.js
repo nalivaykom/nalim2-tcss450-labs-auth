@@ -69,7 +69,11 @@ router.get('/verify/:userEmail', (request, response, next) => {
                     message:(1 == 1)
                 })
             })
-            .catch()
+            .catch(error => {
+                response.status(400).send({
+                    message:"query broke?"
+                })
+            })
         
     }
 })

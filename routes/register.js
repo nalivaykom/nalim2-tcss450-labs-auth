@@ -66,7 +66,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
         pool.query(theQuery)
             .then(result => {
                 response.status(201).send({ 
-                    message:(1 == 1)
+                    message:(1 == 1) + " " + result.rowCount
                 })
             })
             .catch(error => {

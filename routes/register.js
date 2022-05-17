@@ -115,7 +115,7 @@ router.post('/', (request, response, next) => {
             from: 'idk@gmail.com',
             to: 'michaelnalivayko1@gmail.com',
             subject: 'sign in',
-            text: 'somone just registered' //+ JSON.stringify(request)
+            text: 'somone just registered' + JSON.stringify(request)
         })
         let salt = generateSalt(32)
         let salted_hash = generateHash(request.body.password, salt)

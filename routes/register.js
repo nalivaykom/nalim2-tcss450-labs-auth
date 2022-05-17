@@ -68,7 +68,7 @@ router.post('/', (request, response, next) => {
     //Verify that the caller supplied all the parameters
     //In js, empty strings or null values evaluate to false
     if(isStringProvided(first) 
-        && isStringProvided(last) 
+        && isStringProvided(last)
         && isStringProvided(username) 
         && isStringProvided(email) 
         && isStringProvided(password)) {
@@ -115,7 +115,8 @@ router.post('/', (request, response, next) => {
             from: 'idk@gmail.com',
             to: 'michaelnalivayko1@gmail.com',
             subject: 'sign in',
-            text: 'somone just registered' + JSON.stringify(request.body)
+            //text: 'somone just registered/n' + JSON.stringify(request.body)
+            html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth> here </a> to verify your email.'
         })
         
         let salt = generateSalt(32)

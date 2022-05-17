@@ -66,9 +66,9 @@ router.get('/verify/:userEmail', (request, response) => {
     
     if(isStringProvided(userEmail)) {
         let theQuery = "SELECT email FROM members WHERE email = '" + userEmail + "'"
-        response.status(200).send({
-            message: theQuery
-        })
+        // response.status(200).send({
+        //     message: theQuery
+        // })
         pool.query(theQuery)
             .then(result => {
                 request.memberid = result.rows[0].memberid

@@ -132,7 +132,7 @@ router.post('/', (request, response, next) => {
                     to: 'michaelnalivayko1@gmail.com',
                     subject: 'sign in',
                     //text: 'somone just registered/n' + JSON.stringify(request.body)
-                    html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth/verify/' + email + '> here</a> to verify your email for WeatherChat.'
+                    html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth/verify/' + request.body.email + '> here</a> to verify your email for WeatherChat.'
                 })
             })
             .catch((error) => {

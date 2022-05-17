@@ -57,7 +57,7 @@ let transporter = nodemailer.createTransport({
  * @apiError (400: Other Error) {String} detail Information about th error
  * 
  */ 
-router.get('/verify/:userEmail', (request, response, next) => {
+router.get('/verify/:userEmail', (error, request, response, next) => {
     let userEmail = request.params.userEmail
     // response.status(200).send({
     //     message: userEmail
@@ -100,7 +100,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                     message: "User is not registered and does not need to be verified " + num
                 })
             })
-            .catch((next) => {
+            .catch((error) => {
                 response.status(400).send({
                     message: "verification failed "
                 })

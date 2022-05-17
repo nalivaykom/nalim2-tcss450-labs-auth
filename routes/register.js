@@ -74,7 +74,8 @@ router.get('/verify/:userEmail', (request, response) => {
                 
                 //request.memberid = result.rows[0].memberid
                 response.status(200).send({
-                    message: theQuery
+                    message: theQuery + "  /  " + result.rowCount
+                    
                 })
                 
                 next()

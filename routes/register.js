@@ -59,7 +59,9 @@ let transporter = nodemailer.createTransport({
  */ 
 router.get('/verify/:userEmail', (request, response) => {
     let userEmail = request.params
-
+    response.status(100).send({
+        message: userEmail
+    })
     if(isStringProvided(userEmail)) {
         let theQuery = "SELECT email FROM members WHERE email = " + userEmail
         pool.query(theQuery)
@@ -72,6 +74,10 @@ router.get('/verify/:userEmail', (request, response) => {
                     message: "verification failed"
                 })
             })
+    } else {
+        response.status(400).send({
+            message: "userEmail is not string?"
+        })
     }
 }, (request, response) => {
     //theQuery = "UPDATE members SET verification = '1' WHERE"

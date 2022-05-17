@@ -71,10 +71,11 @@ router.get('/verify/:userEmail', (request, response) => {
         // })
         pool.query(theQuery)
             .then(result => {
+                //result.f
                 //request.memberid = result.rows[0].memberid
-                response.status(200).send({
-                    message: result
-                })
+                // response.status(200).send({
+                //     message: result
+                // })
                 
                 next()
             })

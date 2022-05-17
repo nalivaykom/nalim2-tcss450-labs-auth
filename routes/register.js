@@ -73,9 +73,9 @@ router.get('/verify/:userEmail', (request, response, next) => {
             .then(result => {
                 let num = result.rowCount
                 if (num == 1) {
-                    response.status(400).send({
-                        message: "inside if " + num
-                    })
+                    // response.status(400).send({
+                    //     message: "inside if " + num
+                    // })
                 }
                 // if (num = 1) {
                 //     response.status(200).send({

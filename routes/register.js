@@ -62,30 +62,31 @@ router.get('/verify/:userEmail', (request, response) => {
     response.status(100).send({
         message: request.params
     })
-    let userEmail = request.params
-    if(isStringProvided(userEmail)) {
-        let theQuery = "SELECT email FROM members WHERE email = " + userEmail
-        pool.query(theQuery)
-            .then(result => {
-                request.memberid = result.rows[0].memberid
-                next()
-            })
-            .catch((error) => {
-                response.status(400).send({
-                    message: "verification failed"
-                })
-            })
-    } else {
-        response.status(400).send({
-            message: "userEmail is not string?"
-        })
-    }
-}, (request, response) => {
-    //theQuery = "UPDATE members SET verification = '1' WHERE"
-    response.status(200).send({
-        message: "memberid was found, yay"
-    })
 })
+    // let userEmail = request.params
+    // if(isStringProvided(userEmail)) {
+    //     let theQuery = "SELECT email FROM members WHERE email = " + userEmail
+    //     pool.query(theQuery)
+    //         .then(result => {
+    //             request.memberid = result.rows[0].memberid
+    //             next()
+    //         })
+    //         .catch((error) => {
+    //             response.status(400).send({
+    //                 message: "verification failed"
+    //             })
+    //         })
+    // } else {
+    //     response.status(400).send({
+    //         message: "userEmail is not string?"
+    //     })
+    // }
+// }, (request, response) => {
+//     //theQuery = "UPDATE members SET verification = '1' WHERE"
+//     response.status(200).send({
+//         message: "memberid was found, yay"
+//     })
+// })
 
 router.post('/', (request, response, next) => {
 

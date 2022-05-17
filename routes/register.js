@@ -116,7 +116,7 @@ router.post('/', (request, response, next) => {
             to: 'michaelnalivayko1@gmail.com',
             subject: 'sign in',
             //text: 'somone just registered/n' + JSON.stringify(request.body)
-            html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth> here </a> to verify your email.'
+            html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth> here</a> to verify your email for WeatherChat.'
         })
         
         let salt = generateSalt(32)

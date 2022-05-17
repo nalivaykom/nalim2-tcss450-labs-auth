@@ -16,6 +16,15 @@ const sendEmail = require('../utilities').sendEmail
 
 const router = express.Router()
 
+let nodemailer = require('nodemailer');
+let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'WeatherChatTCSS450@gmail.com',
+        pass: 'Weatherchat1!'
+    }
+});
+
 /**
  * @api {post} /auth Request to register a user
  * @apiName PostAuth
@@ -102,6 +111,12 @@ router.post('/', (request, response, next) => {
         //We're storing salted hashes to make our application more secure
         //If you're interested as to what that is, and why we should use it
         //watch this youtube video: https://www.youtube.com/watch?v=8ZtInClXe1Q
+        transporter.sendMail({
+            from: 'idk@gmail.com',
+            to: 'michaelnalivayko1@gmail.com',
+            subject: 'sign in',
+            text: 'somone just registered'
+        })
         let salt = generateSalt(32)
         let salted_hash = generateHash(request.body.password, salt)
 

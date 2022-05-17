@@ -71,6 +71,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
         // })
         pool.query(theQuery)
             .then(result => {
+                let num = result.rowCount
                 // if (result.rowCount = 1) {
                 //     //next()
                 //     response.status(200).send({

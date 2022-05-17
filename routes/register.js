@@ -58,12 +58,12 @@ let transporter = nodemailer.createTransport({
  * 
  */ 
 router.get('/verify/:userEmail', (request, response) => {
-    
+    let userEmail = request.params
     response.status(200).send({
-        message: request.params//request.params
+        message: userEmail
     })
 })
-    // let userEmail = request.params
+    
     // if(isStringProvided(userEmail)) {
     //     let theQuery = "SELECT email FROM members WHERE email = " + userEmail
     //     pool.query(theQuery)

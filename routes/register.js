@@ -79,6 +79,10 @@ router.get('/verify/:userEmail', (request, response, next) => {
                 })
             })
         
+    } else {
+        response.status(400).send({
+            message:"no user email provided"
+        })
     }
 }, (request, response) => {
     response.status(200).send({

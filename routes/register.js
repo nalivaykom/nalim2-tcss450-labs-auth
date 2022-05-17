@@ -69,7 +69,7 @@ router.get('/verify/:userEmail?', (request, response, next) => {
                     next()
                 } else {
                     response.status(201).send({ 
-                        message:"got 0 result"//(1 == 1) + " " + result.rowCount + " " + (result.rowCount == 1)
+                        message: "user not found" //"got 0 result"//(1 == 1) + " " + result.rowCount + " " + (result.rowCount == 1)
                     })
                 }
             })
@@ -86,7 +86,7 @@ router.get('/verify/:userEmail?', (request, response, next) => {
     }
 }, (request, response) => {
     response.status(200).send({
-        message:"got 1 result"
+        message:"user has been confirmed within the database"
     })
 })
 

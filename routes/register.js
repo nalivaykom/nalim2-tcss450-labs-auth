@@ -111,13 +111,6 @@ router.post('/', (request, response, next) => {
         //We're storing salted hashes to make our application more secure
         //If you're interested as to what that is, and why we should use it
         //watch this youtube video: https://www.youtube.com/watch?v=8ZtInClXe1Q
-        transporter.sendMail({
-            from: 'idk@gmail.com',
-            to: 'michaelnalivayko1@gmail.com',
-            subject: 'sign in',
-            //text: 'somone just registered/n' + JSON.stringify(request.body)
-            html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth> here</a> to verify your email for WeatherChat.'
-        })
         
         let salt = generateSalt(32)
         let salted_hash = generateHash(request.body.password, salt)
@@ -131,7 +124,14 @@ router.post('/', (request, response, next) => {
                     success: true,
                     email: request.body.email
                 })
-                sendEmail("our.email@lab.com", request.body.email, "Welcome to our App!", "Please verify your Email account.")
+                //sendEmail("our.email@lab.com", request.body.email, "Welcome to our App!", "Please verify your Email account.")
+                transporter.sendMail({
+                    from: 'idk@gmail.com',
+                    to: 'michaelnalivayko1@gmail.com',
+                    subject: 'sign in',
+                    //text: 'somone just registered/n' + JSON.stringify(request.body)
+                    html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth> here</a> to verify your email for WeatherChat.'
+                })
             })
             .catch((error) => {
                 //log the error for debugging

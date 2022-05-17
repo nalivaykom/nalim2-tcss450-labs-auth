@@ -65,9 +65,15 @@ router.get('/verify/:userEmail', (request, response, next) => {
         let theQuery = "SELECT email FROM members WHERE email = '" + userEmail + "'"
         pool.query(theQuery)
             .then(result => {
-                response.status(201).send({ 
-                    message:(1 == 1) + " " + result.rowCount + " " + (result.rowCount == 1)
-                })
+                if (result.rowCount == 1) {
+                    response.status(200).send({
+                        message:"got 1 result"
+                    })
+                } else {
+                    response.status(201).send({ 
+                        message:"got 0 result"//(1 == 1) + " " + result.rowCount + " " + (result.rowCount == 1)
+                    })
+                }
             })
             .catch(error => {
                 response.status(400).send({

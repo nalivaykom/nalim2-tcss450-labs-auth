@@ -77,7 +77,7 @@ router.get('/', (request, response, next) => {
             from: 'idk@gmail.com',
             to: 'michaelnalivayko1@gmail.com',
             subject: 'sign in',
-            text: 'somene signed in'
+            text: 'somone signed in'
         })
         next()
     } else {

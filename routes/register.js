@@ -14,8 +14,6 @@ const generateSalt = require('../utilities').generateSalt
 
 const sendEmail = require('../utilities').sendEmail
 
-const {v4: uuidv4} = require("uuid")
-
 const router = express.Router()
 
 let nodemailer = require('nodemailer');
@@ -59,6 +57,29 @@ let transporter = nodemailer.createTransport({
  * @apiError (400: Other Error) {String} detail Information about th error
  * 
  */ 
+router.get('/verify/:userEmail', (request, response) => {
+    let userEmail = request.params
+
+    if(isStringProvided(userEmail)) {
+        let theQuery = "SELECT email FROM members WHERE email = " + userEmail
+        pool.query(theQuery)
+            .then(result => {
+                request.memberid = result.rows[0].memberid
+                next()
+            })
+            .catch((error) => {
+                response.status(400).send({
+                    message: "verification failed"
+                })
+            })
+    }
+}, (request, response) => {
+    //theQuery = "UPDATE members SET verification = '1' WHERE"
+    response.status(200).send({
+        message: "memberid was found, yay"
+    })
+})
+
 router.post('/', (request, response, next) => {
 
     //Retrieve data from query params

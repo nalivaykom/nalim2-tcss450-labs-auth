@@ -58,7 +58,7 @@ let transporter = nodemailer.createTransport({
  * 
  */ 
 router.get('/verify/:userEmail', (request, response) => {
-    let userEmail = request.params
+    let userEmail = request.params.userEmail
     response.status(200).send({
         message: userEmail
     })

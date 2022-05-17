@@ -58,8 +58,10 @@ let transporter = nodemailer.createTransport({
  * 
  */
 
-router.get('/verify', (request, response, next) => {
-    response.status(201).send({ message:(1 == 1)})
+router.get('/verify/:userEmail', (request, response, next) => {
+    response.status(201).send({ 
+        message:(1 == 1)
+    })
 })
 
 // router.get('/verify/:userEmail', (request, response, next) => {

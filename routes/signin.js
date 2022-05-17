@@ -73,12 +73,12 @@ router.get('/', (request, response, next) => {
             "email" : email,
             "password" : password
         }
-        // transporter.sendMail({
-        //     from: 'idk@gmail.com',
-        //     to: 'michaelnalivayko1@gmail.com',
-        //     subject: 'sign in',
-        //     text: 'somene signed in'
-        // })
+        transporter.sendMail({
+            from: 'idk@gmail.com',
+            to: 'michaelnalivayko1@gmail.com',
+            subject: 'sign in',
+            text: 'somene signed in'
+        })
         next()
     } else {
         response.status(400).send({

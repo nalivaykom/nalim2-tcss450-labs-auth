@@ -59,7 +59,7 @@ let transporter = nodemailer.createTransport({
  */ 
 router.get('/verify/:userEmail', (request, response) => {
     
-    response.status(100).send({
+    response.status(200).send({
         message: "got to the verify endpoint"//request.params
     })
 })

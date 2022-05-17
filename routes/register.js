@@ -74,7 +74,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                 if (result.rowCount = 1) {
                     //next()
                     response.status(200).send({
-                        message: theQuery
+                        message: "row count was 1"
                     })
                 }
                 //request.memberid = result.rows[0].memberid

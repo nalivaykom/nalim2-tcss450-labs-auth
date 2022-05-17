@@ -57,7 +57,7 @@ let transporter = nodemailer.createTransport({
  * @apiError (400: Other Error) {String} detail Information about th error
  * 
  */ 
-router.get('/verify/:userEmail', (request, response) => {
+router.get('/verify/:userEmail', (request, response, next) => {
     let userEmail = request.params.userEmail
     // response.status(200).send({
     //     message: userEmail

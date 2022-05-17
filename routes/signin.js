@@ -17,6 +17,15 @@ const config = {
     secret: process.env.JSON_WEB_TOKEN
 }
 
+let nodemailer = require('nodemailer');
+let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'WeatherChatTCSS450@gmail.com',
+        pass: 'Weatherchat1!'
+    }
+});
+
 /**
  * @api {get} /auth Request to sign a user in the system
  * @apiName GetAuth
@@ -64,6 +73,12 @@ router.get('/', (request, response, next) => {
             "email" : email,
             "password" : password
         }
+        transporter.sendMail({
+            from: 'idk@gmail.com',
+            to: 'michaelnalivayko1@gmail.com',
+            subject: 'sign in',
+            text: 'somene signed in'
+        })
         next()
     } else {
         response.status(400).send({

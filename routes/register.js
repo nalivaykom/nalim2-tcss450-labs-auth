@@ -72,11 +72,16 @@ router.get('/verify/:userEmail', (request, response, next) => {
         pool.query(theQuery)
             .then(result => {
                 let num = result.rowCount
+
+                response.status(400).send({
+                    message: (num == 1)
+                })
+
                 if (num == 1) {
                     // response.status(400).send({
                     //     message: "inside if " + num
                     // })
-                    next()
+                    //next()
                 }
                 // if (num = 1) {
                 //     response.status(200).send({

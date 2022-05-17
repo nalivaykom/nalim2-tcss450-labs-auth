@@ -92,7 +92,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
 }, (request, response) => {
     //theQuery = "UPDATE members SET verification = '1' WHERE"
     response.status(200).send({
-        message: "memberid was found, yay"
+        message: "memberid was found, yay "
     })
 })
 

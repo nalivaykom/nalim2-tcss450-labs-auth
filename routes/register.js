@@ -66,9 +66,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
         pool.query(theQuery)
             .then(result => {
                 if (result.rowCount == 1) {
-                    response.status(200).send({
-                        message:"got 1 result"
-                    })
+                    next()
                 } else {
                     response.status(201).send({ 
                         message:"got 0 result"//(1 == 1) + " " + result.rowCount + " " + (result.rowCount == 1)
@@ -82,6 +80,10 @@ router.get('/verify/:userEmail', (request, response, next) => {
             })
         
     }
+}, (request, response) => {
+    response.status(200).send({
+        message:"got 1 result"
+    })
 })
 
 // router.get('/verify/:userEmail', (request, response, next) => {

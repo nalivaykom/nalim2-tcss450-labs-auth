@@ -76,6 +76,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                     // response.status(400).send({
                     //     message: "inside if " + num
                     // })
+                    next()
                 }
                 // if (num = 1) {
                 //     response.status(200).send({

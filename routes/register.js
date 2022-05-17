@@ -97,7 +97,7 @@ router.get('/verify/:userEmail', (request, response, next) => {
                 // }
                 //request.memberid = result.rows[0].memberid
                 response.status(400).send({
-                    message: "User is not registered and does not need to be verified " + num
+                    message: "User is not registered and does not need to be verified "// + num
                 })
             })
             // .catch((error) => {

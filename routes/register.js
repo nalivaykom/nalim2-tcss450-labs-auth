@@ -100,11 +100,11 @@ router.get('/verify/:userEmail', (request, response, next) => {
                     message: "User is not registered and does not need to be verified " + num
                 })
             })
-            .catch((error) => {
-                response.status(400).send({
-                    message: "verification failed "
-                })
-            })
+            // .catch((error) => {
+            //     response.status(400).send({
+            //         message: "verification failed "
+            //     })
+            // })
     } else {
         response.status(400).send({
             message: "userEmail is not string?"

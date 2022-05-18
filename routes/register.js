@@ -89,11 +89,14 @@ router.get('/verify/:userEmail?', (request, response, next) => {
     let theQuery = "UPDATE members SET verification = '1' WHERE email = '" + userEmail + "'" 
     pool.query(theQuery)
         .then(
-            response.status(200).sendFile(__dirname,
-                './../htmlPage/email-verified.html'
-                //'./../htmlPage/email-verified.html'
-                //message:"Congratulations: your email has been verified. You may now log in!"
-            )
+            // response.status(200).sendFile(__dirname,
+            //     './../htmlPage/email-verified.html'
+            //     //'./../htmlPage/email-verified.html'
+            //     //message:"Congratulations: your email has been verified. You may now log in!"
+            // )
+            response.status(200).send({
+                message:"Congratulations: your email has been verified. You may now log in!"
+            })
         )
         .catch(error => {
             response.status(400).send({ 

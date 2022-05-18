@@ -113,7 +113,7 @@ router.get('/', (request, response, next) => {
             if (storedSaltedHash === providedSaltedHash ) {
                 //credentials match. get a new JWT
 
-                // const base64Credentials =  request.headers.authorization.split(' ')[1]
+                const base64Credentials =  request.headers.authorization.split(' ')[1]
     
                 // const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii')
 

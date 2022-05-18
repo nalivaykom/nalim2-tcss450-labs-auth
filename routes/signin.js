@@ -123,7 +123,7 @@ router.get('/', (request, response, next) => {
                 let temp
                 pool.query(theQuery2)
                     .then(result => {
-                        temp = result.fields.toString
+                        temp = result.rows[0]
                     })
                     .catch((err) => {
                         //log the error

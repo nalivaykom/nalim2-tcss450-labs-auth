@@ -120,10 +120,21 @@ router.get('/', (request, response, next) => {
                 const [email, password] = credentials.split(':')
 
                 let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
-                
-                response.status(200).send({
-                    message:email + " hopefully didnt crash"
-                })
+                let temp
+                pool.query(theQuery2)
+                    .then(result => {
+                        temp = result.command
+                    })
+                    .catch((err) => {
+                        //log the error
+                        console.log("Error on SELECT************************")
+                        console.log(err)
+                        console.log("************************")
+                        console.log(err.stack)
+                        response.status(400).send({
+                            message: err.detail
+                        })
+                    }) 
 
 
 
@@ -141,7 +152,7 @@ router.get('/', (request, response, next) => {
                 //package and send the results
                 response.json({
                     success: true,
-                    message: 'Authentication successful! ' + email,
+                    message: 'Authentication successful! ' + temp,
                     token: token
                 })
             } else {

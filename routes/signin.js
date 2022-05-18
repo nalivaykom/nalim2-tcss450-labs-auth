@@ -1,5 +1,6 @@
 //express is the framework we're going to use to handle requests
 const express = require('express')
+const { json } = require('express/lib/response')
 
 //Access the connection to Heroku Database
 const pool = require('../utilities').pool
@@ -146,10 +147,13 @@ router.get('/', (request, response, next) => {
             { 
                 expiresIn: '14 days' // expires in 14 days
             })
+
+            json_decode($result=>getFulfullmentMessages()[0])
+
             //package and send the results
             response.json({
             success: true,
-            message: ' Authentication successful! ' + result.oid,
+            message: ' Authentication successful! ' + result,
             token: token
         })
         })

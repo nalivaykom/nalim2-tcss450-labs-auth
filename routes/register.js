@@ -98,9 +98,6 @@ router.get('/verify/:userEmail?', (request, response, next) => {
                 message:"query broken?"
             })
         })
-    response.status(200).send({
-        message:"user has been confirmed within the database\n" + theQuery
-    })
 })
 
 // router.get('/verify/:userEmail', (request, response, next) => {

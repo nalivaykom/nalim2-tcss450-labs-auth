@@ -158,7 +158,7 @@ router.get('/', (request, response, next) => {
                 })
             } else {
                 response.status(400).send({
-                    message:"Please verify this account by email"
+                    message:"Please verify this account by email (Check Spam folder)"
                 })
             }
         })

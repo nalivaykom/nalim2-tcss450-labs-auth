@@ -85,7 +85,7 @@ router.get('/', (request, response, next) => {
             message: "Malformed Authorization Header"
         })
     }
-}, (request, response) => {
+}, (request, response, next) => {
     const theQuery = `SELECT saltedhash, salt, Credentials.memberid FROM Credentials
                       INNER JOIN Members ON
                       Credentials.memberid=Members.memberid 
@@ -99,41 +99,7 @@ router.get('/', (request, response, next) => {
                 })
                 return
             }
-
-            //Retrieve the salt used to create the salted-hash provided from the DB
-            let salt = result.rows[0].salt
-            
-            //Retrieve the salted-hash password provided from the DB
-            let storedSaltedHash = result.rows[0].saltedhash 
-
-            //Generate a hash based on the stored salt and the provided password
-            let providedSaltedHash = generateHash(request.auth.password, salt)
-
-            //Did our salted hash match their salted hash?
-            if (storedSaltedHash === providedSaltedHash ) {
-                //credentials match. get a new JWT
-                let token = jwt.sign(
-                    {
-                        "email": request.auth.email,
-                        "memberid": result.rows[0].memberid
-                    },
-                    config.secret,
-                    { 
-                        expiresIn: '14 days' // expires in 14 days
-                    }
-                )
-                //package and send the results
-                response.json({
-                    success: true,
-                    message: 'Authentication successful!',
-                    token: token
-                })
-            } else {
-                //credentials dod not match
-                response.status(400).send({
-                    message: 'Credentials did not match' 
-                })
-            }
+            next()
         })
         .catch((err) => {
             //log the error
@@ -145,6 +111,41 @@ router.get('/', (request, response, next) => {
                 message: err.detail
             })
         })
+}, (request, response) => {
+    //Retrieve the salt used to create the salted-hash provided from the DB
+    let salt = result.rows[0].salt
+            
+    //Retrieve the salted-hash password provided from the DB
+    let storedSaltedHash = result.rows[0].saltedhash 
+
+    //Generate a hash based on the stored salt and the provided password
+    let providedSaltedHash = generateHash(request.auth.password, salt)
+
+    //Did our salted hash match their salted hash?
+    if (storedSaltedHash === providedSaltedHash ) {
+        //credentials match. get a new JWT
+        let token = jwt.sign(
+            {
+                "email": request.auth.email,
+                "memberid": result.rows[0].memberid
+            },
+            config.secret,
+            { 
+                expiresIn: '14 days' // expires in 14 days
+            }
+        )
+        //package and send the results
+        response.json({
+            success: true,
+            message: 'Authentication successful!',
+            token: token
+        })
+    } else {
+        //credentials dod not match
+        response.status(400).send({
+            message: 'Credentials did not match' 
+        })
+    }
 })
 
 module.exports = router

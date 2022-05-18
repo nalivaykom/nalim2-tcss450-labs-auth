@@ -113,16 +113,16 @@ router.get('/', (request, response, next) => {
             if (storedSaltedHash === providedSaltedHash ) {
                 //credentials match. get a new JWT
 
-                const base64Credentials =  request.headers.authorization.split(' ')[1]
+                // const base64Credentials =  request.headers.authorization.split(' ')[1]
     
-                const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii')
+                // const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii')
 
-                const [email, password] = credentials.split(':')
+                // const [email, password] = credentials.split(':')
 
-                let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
-                response.status(400).send({
-                    message:email
-                })
+                // let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
+                // response.status(400).send({
+                //     message:email
+                // })
 
 
 

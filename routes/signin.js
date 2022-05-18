@@ -148,12 +148,11 @@ router.get('/', (request, response, next) => {
                 expiresIn: '14 days' // expires in 14 days
             })
 
-            json_decode($result=>getFulfullmentMessages()[0])
-
+            let temp = JSON.parse(result)
             //package and send the results
             response.json({
             success: true,
-            message: ' Authentication successful! ' + result,
+            message: ' Authentication successful! ' + temp,
             token: token
         })
         })

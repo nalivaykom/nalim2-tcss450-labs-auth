@@ -117,7 +117,7 @@ router.get('/', (request, response, next) => {
     
                 const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii')
 
-                // const [email, password] = credentials.split(':')
+                const [email, password] = credentials.split(':')
 
                 // let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
                 // response.status(400).send({

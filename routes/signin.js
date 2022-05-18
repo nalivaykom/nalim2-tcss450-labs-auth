@@ -85,7 +85,7 @@ router.get('/', (request, response, next) => {
             message: "Malformed Authorization Header"
         })
     }
-}, (request, response) => {
+}, (request, response, next) => {
     const theQuery = `SELECT saltedhash, salt, Credentials.memberid FROM Credentials
                       INNER JOIN Members ON
                       Credentials.memberid=Members.memberid 
@@ -112,52 +112,7 @@ router.get('/', (request, response, next) => {
             //Did our salted hash match their salted hash?
             if (storedSaltedHash === providedSaltedHash ) {
                 //credentials match. get a new JWT
-
-                const base64Credentials =  request.headers.authorization.split(' ')[1]
-    
-                const credentials = Buffer.from(base64Credentials, 'base64').toString('ascii')
-
-                const [email, password] = credentials.split(':')
-
-                let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
-                let temp = '10'
-                pool.query(theQuery2)
-                    .then(result => {
-                        temp =  15//result.rows[0]
-                        response.status(400).send({
-                            message:"we got into the pool.query"
-                        })
-                    })
-                    .catch((err) => {
-                        //log the error
-                        console.log("Error on SELECT************************")
-                        console.log(err)
-                        console.log("************************")
-                        console.log(err.stack)
-                        response.status(400).send({
-                            message: err.detail
-                        })
-                    }) 
-
-
-
-
-                let token = jwt.sign(
-                    {
-                        "email": request.auth.email,
-                        "memberid": result.rows[0].memberid
-                    },
-                    config.secret,
-                    { 
-                        expiresIn: '14 days' // expires in 14 days
-                    }
-                )
-                //package and send the results
-                response.json({
-                    success: true,
-                    message: ' Authentication successful! ' + temp,
-                    token: token
-                })
+                next()
             } else {
                 //credentials dod not match
                 response.status(400).send({
@@ -175,6 +130,23 @@ router.get('/', (request, response, next) => {
                 message: err.detail
             })
         })
+}, (request, response) => {
+    let token = jwt.sign(
+        {
+            "email": request.auth.email,
+            "memberid": result.rows[0].memberid
+        },
+        config.secret,
+        { 
+            expiresIn: '14 days' // expires in 14 days
+        }
+    )
+    //package and send the results
+    response.json({
+        success: true,
+        message: ' Authentication successful! ',
+        token: token
+    })
 })
 
 module.exports = router

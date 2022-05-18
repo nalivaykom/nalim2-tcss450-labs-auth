@@ -152,7 +152,7 @@ router.get('/', (request, response, next) => {
                 //package and send the results
                 response.json({
                     success: true,
-                    message: 'Authentication successful! ' + temp,
+                    message: 'Authentication successful! ',
                     token: token
                 })
             } else {

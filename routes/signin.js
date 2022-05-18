@@ -149,12 +149,18 @@ router.get('/', (request, response, next) => {
             })
 
             let temp = result.rows[0].verification
-            //package and send the results
-            response.json({
-            success: true,
-            message: ' Authentication successful! ' + temp,
-            token: token
-        })
+            if (temp == 1) {
+                //package and send the results
+                response.json({
+                success: true,
+                message: ' Authentication successful! ' + temp,
+                token: token
+                })
+            } else {
+                response.status(400).send({
+                    message:"Please verify this account by email"
+                })
+            }
         })
         .catch((err) => {
             //log the error

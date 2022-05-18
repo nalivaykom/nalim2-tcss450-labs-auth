@@ -124,6 +124,9 @@ router.get('/', (request, response, next) => {
                 pool.query(theQuery2)
                     .then(result => {
                         temp =  15//result.rows[0]
+                        response.status(400).send({
+                            message:"we got into the pool.query"
+                        })
                     })
                     .catch((err) => {
                         //log the error

@@ -133,22 +133,35 @@ router.get('/', (request, response, next) => {
             })
         })
 }, (request, response) => {
-    let token = jwt.sign(
-        {
-            "email": request.auth.email,
-            "memberid": response.locals.memberid
-        },
-        config.secret,
-        { 
-            expiresIn: '14 days' // expires in 14 days
-        }
-    )
-    //package and send the results
-    response.json({
-        success: true,
-        message: ' Authentication successful! ',
-        token: token
-    })
+    let theQuery = "SELECT verification FROM members WHERE email = '" + request.auth.email + "'"
+    pool.query(theQuery)
+        .then(result => {
+            let token = jwt.sign(
+            {
+                "email": request.auth.email,
+                "memberid": response.locals.memberid
+            },
+            config.secret, 
+            { 
+                expiresIn: '14 days' // expires in 14 days
+            })
+            //package and send the results
+            response.json({
+            success: true,
+            message: ' Authentication successful! ',
+            token: token
+        })
+        })
+        .catch((err) => {
+            //log the error
+            console.log("Error on SELECT************************")
+            console.log(err)
+            console.log("************************")
+            console.log(err.stack)
+            response.status(400).send({
+                message: err.detail
+            })
+        }) 
 })
 
 module.exports = router

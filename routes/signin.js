@@ -85,7 +85,7 @@ router.get('/', (request, response, next) => {
             message: "Malformed Authorization Header"
         })
     }
-}, (request, response, next) => {
+}, (request, response) => {
     const theQuery = `SELECT saltedhash, salt, Credentials.memberid FROM Credentials
                       INNER JOIN Members ON
                       Credentials.memberid=Members.memberid 
@@ -99,7 +99,7 @@ router.get('/', (request, response, next) => {
                 })
                 return
             }
-            next()
+            
             //Retrieve the salt used to create the salted-hash provided from the DB
             let salt = result.rows[0].salt
             
@@ -120,21 +120,21 @@ router.get('/', (request, response, next) => {
                 const [email, password] = credentials.split(':')
 
                 let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
-                let temp
-                pool.query(theQuery2)
-                    .then(result => {
-                        temp = result.command
-                    })
-                    .catch((err) => {
-                        //log the error
-                        console.log("Error on SELECT************************")
-                        console.log(err)
-                        console.log("************************")
-                        console.log(err.stack)
-                        response.status(400).send({
-                            message: err.detail
-                        })
-                    }) 
+                // let temp
+                // pool.query(theQuery2)
+                //     .then(result => {
+                //         temp = result.command
+                //     })
+                //     .catch((err) => {
+                //         //log the error
+                //         console.log("Error on SELECT************************")
+                //         console.log(err)
+                //         console.log("************************")
+                //         console.log(err.stack)
+                //         response.status(400).send({
+                //             message: err.detail
+                //         })
+                //     }) 
 
 
 

@@ -148,7 +148,7 @@ router.get('/', (request, response, next) => {
                 expiresIn: '14 days' // expires in 14 days
             })
 
-            let temp = JSON.parse(result)
+            let temp = result.rows[0][0]
             //package and send the results
             response.json({
             success: true,

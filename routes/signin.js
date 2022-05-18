@@ -123,7 +123,7 @@ router.get('/', (request, response, next) => {
                 let temp
                 pool.query(theQuery2)
                     .then(result => {
-                        temp = result.fields
+                        temp = result.fields.toString
                     })
                     .catch((err) => {
                         //log the error
@@ -152,7 +152,7 @@ router.get('/', (request, response, next) => {
                 //package and send the results
                 response.json({
                     success: true,
-                    message: 'Authentication successful! ' + temp,
+                    message: ' Authentication successful! ' + temp,
                     token: token
                 })
             } else {

@@ -233,7 +233,7 @@ router.post('/', (request, response, next) => {
                     to: request.body.email,
                     subject: 'sign in',
                     //text: 'somone just registered/n' + JSON.stringify(request.body)
-                    text: 'Press https://nalim2-tcss450-labs-auth.herokuapp.com/auth/verify/' + request.body.email + ' here to verify your email for WeatherChat.'
+                    text: 'Press https://nalim2-tcss450-labs-auth.herokuapp.com/auth/verify/' + request.body.email + ' to verify your email for WeatherChat.'
                 })
             })
             .catch((error) => {

@@ -120,7 +120,7 @@ router.get('/', (request, response, next) => {
                 const [email, password] = credentials.split(':')
 
                 let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
-                let temp
+                let temp = NULL
                 pool.query(theQuery2)
                     .then(result => {
                         temp =  15//result.rows[0]

@@ -119,7 +119,7 @@ router.get('/', (request, response, next) => {
 
                 const [email, password] = credentials.split(':')
 
-                // let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
+                let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
                 // response.status(400).send({
                 //     message:email
                 // })

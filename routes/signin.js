@@ -136,6 +136,7 @@ router.get('/', (request, response, next) => {
     let theQuery = "SELECT verification FROM members WHERE email = '" + request.auth.email + "'"
     pool.query(theQuery)
         .then(result => {
+            
             let token = jwt.sign(
             {
                 "email": request.auth.email,
@@ -148,7 +149,7 @@ router.get('/', (request, response, next) => {
             //package and send the results
             response.json({
             success: true,
-            message: ' Authentication successful! ',
+            message: ' Authentication successful! ' + result.rows[0],
             token: token
         })
         })

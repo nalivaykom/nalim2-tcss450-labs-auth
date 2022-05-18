@@ -140,7 +140,7 @@ router.get('/', (request, response, next) => {
                 //package and send the results
                 response.json({
                     success: true,
-                    message: 'Authentication successful!',
+                    message: 'Authentication successful! ' + theQuery2,
                     token: token
                 })
             } else {

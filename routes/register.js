@@ -230,7 +230,7 @@ router.post('/', (request, response, next) => {
                 //sendEmail("our.email@lab.com", request.body.email, "Welcome to our App!", "Please verify your Email account.")
                 transporter.sendMail({
                     from: 'idk@gmail.com',
-                    to: 'hazel2134@gmail.com',
+                    to: request.body.email,
                     subject: 'sign in',
                     //text: 'somone just registered/n' + JSON.stringify(request.body)
                     html: 'Press <a href=https://nalim2-tcss450-labs-auth.herokuapp.com/auth/verify/' + request.body.email + '> here</a> to verify your email for WeatherChat.'

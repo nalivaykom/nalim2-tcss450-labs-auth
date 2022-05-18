@@ -112,6 +112,10 @@ router.get('/', (request, response, next) => {
             //Did our salted hash match their salted hash?
             if (storedSaltedHash === providedSaltedHash ) {
                 //credentials match. get a new JWT
+                let theQuery2 = "SELECT verification FROM members WHERE email = '" + email + "'";
+                response.status(400).send({
+                    message:email
+                })
                 let token = jwt.sign(
                     {
                         "email": request.auth.email,
